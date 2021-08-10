@@ -1,0 +1,15 @@
+{
+  "short_name": "Blunch.ng",
+  "name": "Blunch.ng",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "27x32",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
