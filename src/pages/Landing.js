@@ -126,7 +126,7 @@ export default function Landing() {
   };
 
   async function getStaticProps() {
-    const res = await axios.get("http://order-api.blunch.ng/api/locations");
+    const res = await axios.get("https://order-api.blunch.ng/api/locations");
     const locations = res.data?.locations;
 
     if (!locations) {

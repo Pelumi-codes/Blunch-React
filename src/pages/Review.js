@@ -156,7 +156,7 @@ const Review = () => {
   };
 
   const makeOrder = async (e) => {
-    const url = "http://order-api.blunch.ng/api";
+    const url = "https://order-api.blunch.ng/api";
     const meals = orders.map((order) => ({
       id: order.id,
       quantity: order.quantity,
