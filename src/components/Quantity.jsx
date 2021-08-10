@@ -29,7 +29,7 @@ const Wrapper = styled.div`
   button {
     padding: 0.25rem;
     width: 3.2rem;
-    aspect-ratio: 1/1;
+    height: 3.2rem;
     border: 2px solid
       ${(props) => (props.light ? "var(--white)" : "var(--primary)")};
     border-radius: 50%;
@@ -45,7 +45,7 @@ const Wrapper = styled.div`
 
   .iconWrapper {
     width: 3.2rem;
-    aspect-ratio: 1/1;
+    height: 3.2rem;
     border-radius: 50%;
   }
 

@@ -82,7 +82,7 @@ const Content = styled.div`
 
   .closeBtn {
     width: 2.4rem;
-    aspect-ratio: 1/1;
+    height: 2.4rem;
     position: absolute;
     top: 0;
     right: 0;

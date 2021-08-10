@@ -127,7 +127,7 @@ const FormGroup = ({
   const [showLabel, setShowLabel] = useState(false);
 
   const toggleLabel = (e) => {
-    if (e.target.value.length > 0) {
+    if (e.target.value) {
       setShowLabel(true);
     } else {
       setShowLabel(false);
@@ -153,7 +153,7 @@ const FormGroup = ({
             onBlur={toggleLabel}
             onChange={toggleLabel}
             required={required || false}
-            defaultValue={defaultValue}
+            // defaultValue={defaultValue}
             disabled={disabled}
           />
           {showLabel && <label htmlFor={name}>{placeholder}</label>}
