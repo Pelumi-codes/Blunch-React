@@ -149,7 +149,6 @@ export default function Meals() {
   }
 
   const handleMealSelect = () => {
-    const menu = JSON.parse(localStorage.getItem("menu"));
     const selected_meal = JSON.parse(localStorage.getItem("selected_meal"));
 
     const mealData = menu[selected_meal.day].find(
