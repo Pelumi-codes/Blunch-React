@@ -123,7 +123,7 @@ const Wrapper = styled.div`
 export default function Landing() {
   const [alertText, setAlertText] = useState("");
   const [success, setSuccess] = useState(false);
-  const [location, setLocation] = useState("Select your location");
+  const [location, setLocation] = useState("");
   const [locations, setLocations] = useState(false);
   const router = useHistory();
 

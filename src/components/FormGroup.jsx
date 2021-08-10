@@ -135,7 +135,7 @@ const FormGroup = ({
   };
 
   useEffect(() => {
-    if (defaultValue) {
+    if (defaultValue?.length) {
       setShowLabel(true);
     }
   }, [defaultValue]);
@@ -153,7 +153,7 @@ const FormGroup = ({
             onBlur={toggleLabel}
             onChange={toggleLabel}
             required={required || false}
-            // defaultValue={defaultValue}
+            defaultValue={defaultValue}
             disabled={disabled}
           />
           {showLabel && <label htmlFor={name}>{placeholder}</label>}
@@ -176,6 +176,8 @@ const FormGroup = ({
             placeholder={placeholder}
             required={required || false}
             defaultValue={defaultValue}
+            onBlur={toggleLabel}
+            onChange={toggleLabel}
             disabled={disabled}
           />
           {showLabel && <label htmlFor={name}>{placeholder}</label>}

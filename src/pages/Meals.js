@@ -89,7 +89,7 @@ const Section = styled.div`
   margin: 3.2rem 0;
 
   .title {
-    text-transform: capitalize;
+    text-transform: uppercase;
   }
 
   @media screen and (min-width: 768px) {
@@ -250,7 +250,7 @@ export default function Meals() {
                   Object.keys(menu).map((day) => (
                     <Section key={day} id={day}>
                       <div className="title">
-                        <h3 className="fontRegular">{day}</h3>
+                        <h3 className="fontMedium">{day}</h3>
                       </div>
                       {menu[day]?.map((meal, index) => (
                         <MealCard

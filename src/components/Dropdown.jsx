@@ -7,7 +7,22 @@ const DropdownWrapper = styled.div`
   position: relative;
 
   .locationInput {
-    display: none;
+    display: block;
+    color: var(--text);
+    width: 80%;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0px;
+    color: var(--sup_text);
+
+    &::placeholder {
+      color: ${(props) =>
+        props.disabled ? "var(--border_color)" : "var(--sup_text)"};
+    }
   }
 
   .header {
@@ -20,17 +35,19 @@ const DropdownWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     color: var(--sup_text);
-    cursor: pointer;
     background-color: var(--white);
   }
 
   .toggleIcon {
     height: 2rem;
     transition: transform .2s ease-out;
+    cursor: pointer;
   }
 
   .list {
     width: 100%;
+    max-height: 30vh;
+    overflow: auto;
     position: absolute;
     top: 3rem;
     left: 0;
@@ -73,6 +90,16 @@ const DropdownWrapper = styled.div`
       }
     }
   }
+
+  @media screen and (min-width: 768px) {
+    .list {
+      max-height: 20vh;
+    }
+
+    .iconLeft {
+      margin-right: 0.8rem;
+    }
+  }
 `;
 
 const Dropdown = ({
@@ -86,16 +113,19 @@ const Dropdown = ({
   id,
   readOnly,
 }) => {
-  const toggleList = () => {
+  const toggleList = (open) => {
     if (readOnly) return;
-    document.querySelector(`#${id}`).classList.toggle("isOpen");
+
+    open
+      ? document.querySelector(`#${id}`).classList.add("isOpen")
+      : document.querySelector(`#${id}`).classList.remove("isOpen");
   };
 
   const handleSelect = (e, l) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleList();
     setValue(l);
+    toggleList(false);
   };
 
   return (
@@ -103,31 +133,45 @@ const Dropdown = ({
       id={id}
       className={`dWrapper${hasIcon ? " hasIcon" : ""} ${className ?? ""}`}
     >
-      <div className="header" onClick={toggleList}>
+      <div className="header">
+        {hasIcon && icon && <img src={icon} alt="icon" className="iconLeft" />}
+        {/* <p className="sup title">{value}</p> */}
         <input
           type="text"
           name={name}
           value={value}
-          readOnly
+          onChange={(e) => setValue(e.target.value)}
           className="locationInput"
+          placeholder="Select your location"
+          onFocus={() => toggleList(true)}
+          readOnly={readOnly}
         />
-        {hasIcon && icon && <img src={icon} alt="icon" className="iconLeft" />}
-        <p className="sup title">{value}</p>
         {!hasIcon && (
-          <img src={chevron_down} alt="down" className="toggleIcon" />
+          <img
+            src={chevron_down}
+            alt="down"
+            className="toggleIcon"
+            onClick={() =>
+              document.querySelector(`#${id}`).classList.toggle("isOpen")
+            }
+          />
         )}
       </div>
       <div className="list">
         {!!list?.length &&
-          list.map((item) => (
-            <button
-              key={item.id}
-              className="listItem"
-              onClick={(e) => handleSelect(e, item.name)}
-            >
-              {item.name}
-            </button>
-          ))}
+          list
+            .filter((location) =>
+              location.name.toLowerCase().match(value.toLowerCase())
+            )
+            .map((item) => (
+              <button
+                key={item.id}
+                className="listItem sup"
+                onClick={(e) => handleSelect(e, item.name)}
+              >
+                {item.name}
+              </button>
+            ))}
       </div>
     </DropdownWrapper>
   );
