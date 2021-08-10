@@ -53,6 +53,13 @@ const Content = styled.div`
   bottom: 0;
   left: 0;
 
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   .header {
     width: 100%;
     position: sticky;

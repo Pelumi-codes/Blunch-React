@@ -52,6 +52,8 @@
   -ms-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 html {
@@ -120,6 +122,10 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+:root::-webkit-scrollbar {
+  display: none;
 }
 
 ul {

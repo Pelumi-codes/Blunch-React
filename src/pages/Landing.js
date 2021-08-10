@@ -13,6 +13,13 @@ const Wrapper = styled.div`
   height: 100vh;
   overflow: hidden;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
   .text1 {
     font-size: 32px;
     font-weight: 400;
@@ -45,6 +52,13 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     padding: 0 2.4rem;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .contentRight {

@@ -13,6 +13,12 @@ import Metas from "../components/Metas";
 import map_pin from "../assets/map_pin.svg";
 
 const Wrapper = styled(Container)`
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   >.content {
     width: 100%;
@@ -20,6 +26,12 @@ const Wrapper = styled(Container)`
     display: grid;
     grid-template-columns: 1fr;
     overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     #cart {
       display: none;
