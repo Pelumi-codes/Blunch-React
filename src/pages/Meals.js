@@ -140,7 +140,7 @@ export default function Meals() {
   const router = useHistory();
 
   async function getStaticProps() {
-    const res = await axios.get("https://order.blunch.ng/api/menu");
+    const res = await axios.get("http://order-api.blunch.ng/api/menu");
     const menu = res.data;
 
     if (menu) delete menu.status;

@@ -4,14 +4,14 @@ import close from "../assets/close.svg";
 import Button from "./Button";
 import Quantity from "./Quantity";
 import { useState } from "react";
-import chicken_waffles from "../assets/menu/4 Chicken Waffles + 2 Sausages + Syrup.jpg";
-import plain_waffles from "../assets/menu/4 Plain Waffles + 2 Sausages + Syrup.jpg";
-import pancakes_sausages_syrup from "../assets/menu/6 Pancakes + 2 Sausages + Syrup.jpg";
+import chicken_waffles from "../assets/menu/4 Chicken Waffles & 2 Sausages & Syrup.jpg";
+import plain_waffles from "../assets/menu/4 Plain Waffles & 2 Sausages & Syrup.jpg";
+import pancakes_sausages_syrup from "../assets/menu/6 Pancakes & 2 Sausages & Syrup.jpg";
 import chicken_sandwich from "../assets/menu/Chicken Sandwich.jpg";
 import chicken_stirfry from "../assets/menu/Chicken Stir Fry Noodles.jpg";
 import egg_mayo_sandwich from "../assets/menu/Egg & Mayo Sandwich.jpg";
 import sardine_sandwich from "../assets/menu/Sardine Sandwich.jpg";
-import suya_stirfry_extra_suya from "../assets/menu/Suya Stir Fry Noodles +Extra Suya.jpg";
+import suya_stirfry_extra_suya from "../assets/menu/Suya Stir Fry Noodles & Extra Suya.jpg";
 import suya_stirfry from "../assets/menu/Suya Stir Fry Noodles.jpg";
 import zobo from "../assets/menu/Zobo.jpg";
 
