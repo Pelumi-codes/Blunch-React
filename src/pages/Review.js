@@ -287,8 +287,8 @@ const Review = () => {
                     Note:
                     <br />
                     Pre-orders will be delivered between 9am - 11am. Same day
-                    orders will be delivered between 2 - 3 hours from when you
-                    place your order.
+                    orders after 9am will be delivered between 1 - 3 hours from
+                    when you place your order.
                   </p>
                 </div>
               </div>

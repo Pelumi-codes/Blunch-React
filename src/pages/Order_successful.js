@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Container from "../components/Container";
 import Layout from "../components/Layout";
 import Metas from "../components/Metas";
+import order_success from "../assets/order_success.svg";
 
 const Wrapper = styled(Container)`
   width: 100%;
@@ -83,7 +84,7 @@ const Order_successful = () => {
         {render && (
           <Wrapper>
             <div className="imgWrapper">
-              <img src="/order_success.svg" alt="Shopping bag" />
+              <img src={order_success} alt="Shopping bag" />
             </div>
             <div className="textWrapper">
               <h1 className="prompt">Order successful!</h1>
