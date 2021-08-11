@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     grid-template-columns: 1fr 2fr 2fr;
-    padding: 2.4rem 4.8rem;
+    padding: 2.4rem;
     border-top: 1px solid var(--border_color);
     border-bottom: none;
   }

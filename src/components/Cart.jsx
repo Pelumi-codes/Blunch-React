@@ -122,7 +122,7 @@ const Content = styled.div`
       z-index: 1;
       width: 100%;
       background-color: var(--text);
-      padding: 3.2rem 4.8rem;
+      padding: 3.2rem 2.4rem;
       margin-top: 2.4rem;
       border-top: 1px solid var(--border_color);
     }
@@ -133,7 +133,7 @@ const Content = styled.div`
       z-index: 1;
       margin-top: 0;
       margin-bottom: 2.4rem;
-      padding: 0 4.8rem;
+      padding: 0 2.4rem;
 
       .btn {
         background-color: var(--white);
