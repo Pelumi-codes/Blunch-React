@@ -172,10 +172,10 @@ const AddToCart = ({ content, setOrders }) => {
 
       cart = JSON.parse(localStorage.getItem("cart"));
 
-      // const quantity = document.querySelector("input#quantity").value;
-      // let selected_meal = {
-      //   ...JSON.parse(localStorage.getItem("selected_meal")),
-      // };
+      const quantity = document.querySelector("input#quantity").value;
+      const selected_meal = {
+        ...JSON.parse(localStorage.getItem("selected_meal")),
+      };
 
       // const isInCart =
       //   cart &&
@@ -186,22 +186,22 @@ const AddToCart = ({ content, setOrders }) => {
       //   );
 
       // if (isInCart) {
+      //   const index = cart.findIndex(
+      //     (item) =>
+      //       item.id === selected_meal.id &&
+      //       item.pivot.day_id === selected_meal.pivot.day_id
+      //   );
+
+      //   selected_meal = cart[index];
+
       //   selected_meal.quantity = Number(quantity) + selected_meal.quantity;
 
       //   selected_meal.total = selected_meal.price * selected_meal.quantity;
 
-      // const index = cart.findIndex(
-      //   (item) =>
-      //     item.id === selected_meal.id &&
-      //     item.pivot.day_id === selected_meal.pivot.day_id
-      // );
-
-      //   console.log(selected_meal.quantity);
-
       //   let temp_cart = [...cart];
 
       //   temp_cart.splice(index, 1, selected_meal);
-
+      //   setOrders([]);
       //   setOrders(temp_cart);
       // } else {
       //   selected_meal.quantity = Number(quantity);
@@ -211,13 +211,7 @@ const AddToCart = ({ content, setOrders }) => {
       //   setOrders(cart);
       // }
 
-      let selected_meal = {
-        ...JSON.parse(localStorage.getItem("selected_meal")),
-        quantity: Number(quantity),
-        // total: selected_meal.price * selected_meal.quantity,
-      };
-
-      // selected_meal.quantity = Number(quantity);
+      selected_meal.quantity = Number(quantity);
       selected_meal.total = selected_meal.price * selected_meal.quantity;
       console.log(selected_meal.quantity, quantity);
       cart.unshift(selected_meal);
@@ -227,9 +221,10 @@ const AddToCart = ({ content, setOrders }) => {
       localStorage.setItem("cart", JSON.stringify(cart));
       // setQuantity(1);
       document.querySelector("#addToCart").classList.remove("open");
+
       // document.querySelector("#cart").classList.add("open");
     },
-    [quantity, setOrders]
+    [setOrders]
   );
 
   return (

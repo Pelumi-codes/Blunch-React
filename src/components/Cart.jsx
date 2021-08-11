@@ -206,6 +206,19 @@ const Cart = ({ lg, orders, setOrders }) => {
     setOrders(temp);
   };
 
+  // const handleQuanityChange = (index, quantity) => {
+  //   const _orders = [...orders];
+  //   const _order = orders[index];
+
+  //   _order.quantity = quantity;
+  //   _order.total = _order.price * _order.quantity;
+
+  //   _orders.splice(index, 1, _order);
+
+  //   localStorage.setItem("cart", JSON.stringify(_orders));
+  //   setOrders(_orders);
+  // };
+
   if (lg && orders) {
     return (
       <Content lg>

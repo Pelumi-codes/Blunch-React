@@ -181,7 +181,7 @@ const Review = () => {
     setLoading(false);
 
     if (res?.data?.status === "success") {
-      router.push(`${url}/paynow?order_id=${res.data?.order_id}`);
+      window.location.replace(`${url}/paynow?order_id=${res.data?.order_id}`);
     } else {
       showAlert("An error occurred", false);
     }
