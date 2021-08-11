@@ -213,7 +213,7 @@ const AddToCart = ({ content, setOrders }) => {
 
       selected_meal.quantity = Number(quantity);
       selected_meal.total = selected_meal.price * selected_meal.quantity;
-      console.log(selected_meal.quantity, quantity);
+
       cart.unshift(selected_meal);
 
       setOrders(cart);

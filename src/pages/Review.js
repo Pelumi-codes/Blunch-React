@@ -167,18 +167,22 @@ const Review = () => {
 
     const location_id = user_location?.id;
 
-    setLoading(true);
+    let res;
 
-    const res = await axios.post(
-      `${url}/order?name=${deliveryInfo.name}&phone=${
-        deliveryInfo.phone
-      }&location_id=${Number(location_id)}&email=${
-        deliveryInfo.email
-      }&address=${deliveryInfo.delivery_address}`,
-      { meals }
-    );
-
-    setLoading(false);
+    try {
+      setLoading(true);
+      res = await axios.post(
+        `${url}/order?name=${deliveryInfo.name}&phone=${
+          deliveryInfo.phone
+        }&location_id=${Number(location_id)}&email=${
+          deliveryInfo.email
+        }&address=${deliveryInfo.delivery_address}`,
+        { meals }
+      );
+    } catch (e) {
+      setLoading(false);
+      console.log(e.message);
+    }
 
     if (res?.data?.status === "success") {
       window.location.replace(`${url}/paynow?order_id=${res.data?.order_id}`);
