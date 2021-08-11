@@ -3,7 +3,7 @@ import styled from "styled-components";
 import close from "../assets/close.svg";
 import Button from "./Button";
 import Quantity from "./Quantity";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import chicken_waffles from "../assets/menu/4 Chicken Waffles & 2 Sausages & Syrup.jpg";
 import plain_waffles from "../assets/menu/4 Plain Waffles & 2 Sausages & Syrup.jpg";
 import pancakes_sausages_syrup from "../assets/menu/6 Pancakes & 2 Sausages & Syrup.jpg";
@@ -159,33 +159,78 @@ const AddToCart = ({ content, setOrders }) => {
     document.querySelector("#addToCart").classList.remove("open");
   };
 
-  const handleAddToCart = (e) => {
-    e.stopPropagation();
+  const handleAddToCart = useMemo(
+    () => (e) => {
+      e.stopPropagation();
 
-    let cart;
+      let cart;
 
-    if (!localStorage.getItem("cart")) {
-      cart = [];
+      if (!localStorage.getItem("cart")) {
+        cart = [];
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
+
+      cart = JSON.parse(localStorage.getItem("cart"));
+
+      // const quantity = document.querySelector("input#quantity").value;
+      // let selected_meal = {
+      //   ...JSON.parse(localStorage.getItem("selected_meal")),
+      // };
+
+      // const isInCart =
+      //   cart &&
+      //   cart.some(
+      //     (item) =>
+      //       item.id === selected_meal.id &&
+      //       item.pivot.day_id === selected_meal.pivot.day_id
+      //   );
+
+      // if (isInCart) {
+      //   selected_meal.quantity = Number(quantity) + selected_meal.quantity;
+
+      //   selected_meal.total = selected_meal.price * selected_meal.quantity;
+
+      // const index = cart.findIndex(
+      //   (item) =>
+      //     item.id === selected_meal.id &&
+      //     item.pivot.day_id === selected_meal.pivot.day_id
+      // );
+
+      //   console.log(selected_meal.quantity);
+
+      //   let temp_cart = [...cart];
+
+      //   temp_cart.splice(index, 1, selected_meal);
+
+      //   setOrders(temp_cart);
+      // } else {
+      //   selected_meal.quantity = Number(quantity);
+      //   selected_meal.total = selected_meal.price * selected_meal.quantity;
+
+      //   cart.unshift(selected_meal);
+      //   setOrders(cart);
+      // }
+
+      let selected_meal = {
+        ...JSON.parse(localStorage.getItem("selected_meal")),
+        quantity: Number(quantity),
+        // total: selected_meal.price * selected_meal.quantity,
+      };
+
+      // selected_meal.quantity = Number(quantity);
+      selected_meal.total = selected_meal.price * selected_meal.quantity;
+      console.log(selected_meal.quantity, quantity);
+      cart.unshift(selected_meal);
+
+      setOrders(cart);
+
       localStorage.setItem("cart", JSON.stringify(cart));
-    }
-
-    cart = JSON.parse(localStorage.getItem("cart"));
-
-    const quantity = document.querySelector("input#quantity").value;
-    const selected_meal = JSON.parse(localStorage.getItem("selected_meal"));
-
-    selected_meal.quantity = Number(quantity);
-    selected_meal.total = selected_meal.price * selected_meal.quantity;
-
-    cart.unshift(selected_meal);
-
-    setOrders(cart);
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    document.querySelector("#addToCart").classList.remove("open");
-    // document.querySelector("#cart").classList.add("open");
-  };
+      // setQuantity(1);
+      document.querySelector("#addToCart").classList.remove("open");
+      // document.querySelector("#cart").classList.add("open");
+    },
+    [quantity, setOrders]
+  );
 
   return (
     <Wrapper
@@ -205,13 +250,13 @@ const AddToCart = ({ content, setOrders }) => {
           </div>
           <Quantity value={quantity} setValue={setQuantity} />
           <div className="actionBtns">
+            <Button text="Add to cart" fullWidth onClick={handleAddToCart} />
             <Button
               text="Cancel"
               className="bordered"
               fullWidth
               onClick={handleClose}
             />
-            <Button text="Add to cart" fullWidth onClick={handleAddToCart} />
           </div>
         </Content>
       )}

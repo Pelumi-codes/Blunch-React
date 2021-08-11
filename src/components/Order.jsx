@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Quantity from './Quantity';
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import Quantity from "./Quantity";
 
 const Wrapper = styled.div`
   display: grid;
@@ -26,16 +26,27 @@ const Wrapper = styled.div`
     border-top: 1px solid var(--border_color);
     border-bottom: none;
   }
-` 
+`;
 
 const formatNumber = (num) => {
-  const formatter = new Intl.NumberFormat()
+  const formatter = new Intl.NumberFormat();
   const toNum = Number(num);
 
   return formatter.format(toNum);
 };
 
-const Order = ({_quantity, name, total, light, handleRemove, index, orders, setOrders}) => {
+const Order = ({
+  // quantity,
+  // setQuantity,
+  _quantity,
+  name,
+  total,
+  light,
+  handleRemove,
+  index,
+  orders,
+  setOrders,
+}) => {
   const [quantity, setQuantity] = useState(_quantity);
 
   const handleQuanityChange = () => {
@@ -49,25 +60,27 @@ const Order = ({_quantity, name, total, light, handleRemove, index, orders, setO
 
     localStorage.setItem("cart", JSON.stringify(_orders));
     setOrders(_orders);
-  }
+  };
 
   useEffect(() => {
     handleQuanityChange();
     // eslint-disable-next-line
-  }, [quantity])
+  }, [quantity, setOrders]);
 
   return (
     <Wrapper>
       <Quantity light={light} value={quantity} setValue={setQuantity} />
       <div>
         <p className="sup mealName">{name}</p>
-        <button className="small removeBtn" onClick={() => handleRemove(index)}><span>Remove</span></button>
+        <button className="small removeBtn" onClick={() => handleRemove(index)}>
+          <span>Remove</span>
+        </button>
       </div>
       <div>
         <p className="price">NGN {formatNumber(total)}</p>
       </div>
     </Wrapper>
   );
-}
+};
 
 export default Order;

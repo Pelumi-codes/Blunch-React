@@ -4,6 +4,7 @@ import plusPrimary from "../assets/plusPrimary.svg";
 import plusLight from "../assets/plusLight.svg";
 import minusPrimary from "../assets/minusPrimary.svg";
 import minusLight from "../assets/minusLight.svg";
+// import { useEffect } from "react";
 
 const Wrapper = styled.div`
   display: flex;
@@ -53,7 +54,6 @@ const Wrapper = styled.div`
     display: block;
     width: 3.75rem;
     height: 3rem;
-    padding: 0 1.125rem;
     color: ${(props) => (props.light ? "var(--white)" : "var(--text)")};
     border: none;
     text-align: center;

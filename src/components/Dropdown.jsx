@@ -91,13 +91,13 @@ const DropdownWrapper = styled.div`
     }
   }
 
+  .iconLeft {
+    margin-right: 0.8rem;
+  }
+
   @media screen and (min-width: 768px) {
     .list {
       max-height: 20vh;
-    }
-
-    .iconLeft {
-      margin-right: 0.8rem;
     }
   }
 `;

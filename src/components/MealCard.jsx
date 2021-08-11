@@ -101,13 +101,12 @@ const MealCard = (props) => {
     const _date = new Date();
     const _day = _date.getDay();
     const _hours = _date.getHours();
-    const cart = JSON.parse(localStorage.getItem("cart"));
-    const isInCart =
-      cart && cart.some((item) => item.id === id && item.pivot.day_id === day);
+    // const cart = JSON.parse(localStorage.getItem("cart"));
+    // const isInCart = cart && cart.some((item) => item.id === id && item.pivot.day_id === day);
     const isValidDay = day >= _day;
     const isPastTime = day === _day && _hours >= 14;
 
-    return !isInCart && isValidDay && !isPastTime;
+    return isValidDay && !isPastTime;
   };
 
   const handleClick = (e) => {
@@ -116,8 +115,9 @@ const MealCard = (props) => {
     let selected_meal = {
       ...props,
       day,
-      quantity: 1,
     };
+
+    localStorage.removeItem("selected_meal");
 
     localStorage.setItem("selected_meal", JSON.stringify(selected_meal));
 

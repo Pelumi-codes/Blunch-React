@@ -134,13 +134,13 @@ const formatNumber = (num) => {
   return formatter.format(toNum);
 };
 
-// const days = {
-//   1: "monday",
-//   2: "tuesday",
-//   3: "wednesday",
-//   4: "thursday",
-//   5: "friday",
-// };
+const days = {
+  1: "monday",
+  2: "tuesday",
+  3: "wednesday",
+  4: "thursday",
+  5: "friday",
+};
 
 export default function Meals() {
   const [location, setLocation] = useState("...");
@@ -174,7 +174,7 @@ export default function Meals() {
   useEffect(() => {
     getStaticProps();
     const user_location = localStorage.getItem("user_location");
-    // let today = new Date().getDay();
+    let today = new Date().getDay();
     let cart;
 
     if (!localStorage.getItem("cart")) {
@@ -184,20 +184,15 @@ export default function Meals() {
 
     cart = JSON.parse(localStorage.getItem("cart"));
 
-    setOrders(cart.reverse());
+    setOrders(cart);
 
     user_location && setLocation(JSON.parse(user_location).name);
     menu && localStorage.setItem("menu", JSON.stringify(menu));
 
-    // setTimeout(() => {
-    //   setReady(true);
-    //   console.log(days[today], document.querySelector(`#tuesday`));
-    //   days[today] &&
-    //     document.querySelector(`#${days[today]}`) &&
-    //     document.querySelector(`#${days[today]}`).scrollIntoView();
-    // }, 1000);
-
-    // ready && console.log(days[today], document.querySelector(`#tuesday`));
+    menu &&
+      days[today] &&
+      document.querySelector(`#${days[today]}`) &&
+      document.querySelector(`#${days[today]}`).scrollIntoView();
     // eslint-disable-next-line
   }, [location]);
 
@@ -243,30 +238,28 @@ export default function Meals() {
               />
             </div>
           </Header>
-          {menu && (
-            <div className="content">
-              <div className="listing">
-                {menu &&
-                  Object.keys(menu).map((day) => (
-                    <Section key={day} id={day}>
-                      <div className="title">
-                        <h3 className="fontMedium">{day}</h3>
-                      </div>
-                      {menu[day]?.map((meal, index) => (
-                        <MealCard
-                          key={`${index}${meal.id}`}
-                          {...meal}
-                          day={day}
-                          handleMealSelect={handleMealSelect}
-                          orders={orders}
-                        />
-                      ))}
-                    </Section>
+
+          <div className="content">
+            <div className="listing">
+              {Object.keys(menu).map((day) => (
+                <Section key={day} id={day}>
+                  <div className="title">
+                    <h3 className="fontMedium">{day}</h3>
+                  </div>
+                  {menu[day]?.map((meal, index) => (
+                    <MealCard
+                      key={`${index}${meal.id}`}
+                      {...meal}
+                      day={day}
+                      handleMealSelect={handleMealSelect}
+                      orders={orders}
+                    />
                   ))}
-              </div>
-              <PreCheckout lg orders={orders} setOrders={setOrders} />
+                </Section>
+              ))}
             </div>
-          )}
+            <PreCheckout lg orders={orders} setOrders={setOrders} />
+          </div>
         </Wrapper>
       </Layout>
     </>
