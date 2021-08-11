@@ -5,6 +5,7 @@ import Container from "../components/Container";
 import Layout from "../components/Layout";
 import Metas from "../components/Metas";
 import order_success from "../assets/order_success.svg";
+import Button from "../components/Button";
 
 const Wrapper = styled(Container)`
   width: 100%;
@@ -24,12 +25,16 @@ const Wrapper = styled(Container)`
     justify-content: center;
 
     img {
-      width: 100%;
+      width: 24rem;
     }
   }
 
   .textWrapper {
     text-align: center;
+  }
+
+  .btn {
+    margin-top: 4.8rem;
   }
 
   @media screen and (min-width: 768px) {
@@ -44,6 +49,7 @@ const Wrapper = styled(Container)`
     }
 
     .textWrapper {
+      width: 70%;
       text-align: left;
     }
   }
@@ -89,10 +95,15 @@ const Order_successful = () => {
             <div className="textWrapper">
               <h1 className="prompt">Order successful!</h1>
               <p>
-                Your order has been received and will be
-                <br />
-                delivered on expected date of delivery.
+                Your order has been received and will be delivered on expected
+                date of delivery.
               </p>
+              <Button
+                text="Order more items"
+                className="btn"
+                fullWidth
+                onClick={() => router.push("/meals")}
+              />
             </div>
           </Wrapper>
         )}
