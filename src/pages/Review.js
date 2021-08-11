@@ -35,6 +35,10 @@ const Wrapper = styled(Container)`
     }
   }
 
+  .info {
+    height: max-content;
+  }
+
   .order {
     display: grid;
     grid-template-columns: 1fr 3fr 2fr;
@@ -239,7 +243,19 @@ const Review = () => {
                   </div>
                   <div className="sup item">
                     <span>Delivery fee</span>
-                    <span>NGN {userLocation.delivery_price}</span>
+                    <span>
+                      NGN{" "}
+                      {userLocation.delivery_price *
+                        Object.keys(
+                          orders
+                            .map((order) => order.pivot.day_id)
+                            .reduce(function (acc, curr) {
+                              return (
+                                acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc
+                              );
+                            }, {})
+                        ).length}
+                    </span>
                   </div>
                 </div>
                 {!!orders.length && (
@@ -250,7 +266,17 @@ const Review = () => {
                       {formatNumber(
                         orders.reduce(
                           (a, b) => a + b.total,
-                          userLocation.delivery_price
+                          userLocation.delivery_price *
+                            Object.keys(
+                              orders
+                                .map((order) => order.pivot.day_id)
+                                .reduce(function (acc, curr) {
+                                  return (
+                                    acc[curr] ? ++acc[curr] : (acc[curr] = 1),
+                                    acc
+                                  );
+                                }, {})
+                            ).length
                         )
                       )}
                     </span>

@@ -7,10 +7,10 @@ import Container from "../components/Container";
 import Dropdown from "../components/Dropdown";
 import Layout from "../components/Layout";
 import MealCard from "../components/MealCard";
-import PreCheckout from "../components/Cart";
 import { useHistory } from "react-router";
 import Metas from "../components/Metas";
 import map_pin from "../assets/map_pin.svg";
+import Cart from "../components/Cart";
 
 const Wrapper = styled(Container)`
   -ms-overflow-style: none;
@@ -151,7 +151,10 @@ export default function Meals() {
   const [location, setLocation] = useState("...");
   const [selectedMeal, setSelectedMeal] = useState(false);
   const [orders, setOrders] = useState(false);
-  const [menu, setMenu] = useState(false);
+  const [menu, setMenu] = useState(
+    JSON.parse(localStorage.getItem("menu")) || false
+  );
+  const [updateVal, setUpdateVal] = useState(0);
 
   const router = useHistory();
 
@@ -165,6 +168,8 @@ export default function Meals() {
     const menu = res.data;
 
     if (menu) delete menu.status;
+
+    if (menu) localStorage.setItem("menu", JSON.stringify(menu));
 
     setMenu(menu);
     setTimeout(() => scrollIntoView());
@@ -221,8 +226,12 @@ export default function Meals() {
             />
           </CartPreview>
         )}
-        <AddToCart content={selectedMeal} setOrders={setOrders} />
-        <PreCheckout orders={orders} setOrders={setOrders} />
+        <AddToCart
+          content={selectedMeal}
+          setOrders={setOrders}
+          setUpdateVal={setUpdateVal}
+        />
+        <Cart orders={orders} setOrders={setOrders} updateVal={updateVal} />
         <Wrapper orders={orders}>
           <Header>
             <div className="inner">
@@ -337,7 +346,12 @@ export default function Meals() {
                 ))}
               </Section>
             </div>
-            <PreCheckout lg orders={orders} setOrders={setOrders} />
+            <Cart
+              lg
+              orders={orders}
+              setOrders={setOrders}
+              updateVal={updateVal}
+            />
           </div>
         </Wrapper>
       </Layout>

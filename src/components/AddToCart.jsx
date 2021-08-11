@@ -3,7 +3,7 @@ import styled from "styled-components";
 import close from "../assets/close.svg";
 import Button from "./Button";
 import Quantity from "./Quantity";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import chicken_waffles from "../assets/menu/4 Chicken Waffles & 2 Sausages & Syrup.jpg";
 import plain_waffles from "../assets/menu/4 Plain Waffles & 2 Sausages & Syrup.jpg";
 import pancakes_sausages_syrup from "../assets/menu/6 Pancakes & 2 Sausages & Syrup.jpg";
@@ -31,7 +31,7 @@ const Wrapper = styled.div`
 
   .content {
     bottom: -100%;
-    transition: all 0.2s ease-out;
+    transition: all 0.1s ease-out;
   }
 
   &.open {
@@ -151,7 +151,7 @@ const photos = {
   Zobo: zobo,
 };
 
-const AddToCart = ({ content, setOrders }) => {
+const AddToCart = ({ content, setOrders, setUpdateVal }) => {
   const [quantity, setQuantity] = useState(1);
 
   const handleClose = (e) => {
@@ -159,73 +159,58 @@ const AddToCart = ({ content, setOrders }) => {
     document.querySelector("#addToCart").classList.remove("open");
   };
 
-  const handleAddToCart = useMemo(
-    () => (e) => {
-      e.stopPropagation();
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
 
-      let cart;
+    let cart;
 
-      if (!localStorage.getItem("cart")) {
-        cart = [];
-        localStorage.setItem("cart", JSON.stringify(cart));
-      }
+    if (!localStorage.getItem("cart")) {
+      cart = [];
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
 
-      cart = JSON.parse(localStorage.getItem("cart"));
+    cart = JSON.parse(localStorage.getItem("cart"));
 
-      const quantity = document.querySelector("input#quantity").value;
-      const selected_meal = {
-        ...JSON.parse(localStorage.getItem("selected_meal")),
-      };
+    const selected_meal = {
+      ...JSON.parse(localStorage.getItem("selected_meal")),
+    };
 
-      // const isInCart =
-      //   cart &&
-      //   cart.some(
-      //     (item) =>
-      //       item.id === selected_meal.id &&
-      //       item.pivot.day_id === selected_meal.pivot.day_id
-      //   );
+    const isInCart =
+      cart &&
+      cart.some(
+        (item) =>
+          item.id === selected_meal.id &&
+          item.pivot.day_id === selected_meal.pivot.day_id
+      );
 
-      // if (isInCart) {
-      //   const index = cart.findIndex(
-      //     (item) =>
-      //       item.id === selected_meal.id &&
-      //       item.pivot.day_id === selected_meal.pivot.day_id
-      //   );
+    if (isInCart) {
+      const index = cart.findIndex(
+        (item) =>
+          item.id === selected_meal.id &&
+          item.pivot.day_id === selected_meal.pivot.day_id
+      );
 
-      //   selected_meal = cart[index];
+      selected_meal.quantity = Number(quantity) + cart[index].quantity;
 
-      //   selected_meal.quantity = Number(quantity) + selected_meal.quantity;
+      selected_meal.total = selected_meal.price * selected_meal.quantity;
 
-      //   selected_meal.total = selected_meal.price * selected_meal.quantity;
-
-      //   let temp_cart = [...cart];
-
-      //   temp_cart.splice(index, 1, selected_meal);
-      //   setOrders([]);
-      //   setOrders(temp_cart);
-      // } else {
-      //   selected_meal.quantity = Number(quantity);
-      //   selected_meal.total = selected_meal.price * selected_meal.quantity;
-
-      //   cart.unshift(selected_meal);
-      //   setOrders(cart);
-      // }
-
+      cart.splice(index, 1, selected_meal);
+      setOrders(cart);
+    } else {
       selected_meal.quantity = Number(quantity);
       selected_meal.total = selected_meal.price * selected_meal.quantity;
 
       cart.unshift(selected_meal);
-
       setOrders(cart);
+    }
 
-      localStorage.setItem("cart", JSON.stringify(cart));
-      // setQuantity(1);
-      document.querySelector("#addToCart").classList.remove("open");
+    localStorage.setItem("cart", JSON.stringify(cart));
+    document.querySelector("#addToCart").classList.remove("open");
 
-      // document.querySelector("#cart").classList.add("open");
-    },
-    [setOrders]
-  );
+    if (isInCart) {
+      window.location.reload(false);
+    }
+  };
 
   return (
     <Wrapper
