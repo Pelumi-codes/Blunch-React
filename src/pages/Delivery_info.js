@@ -8,14 +8,22 @@ import Layout from "../components/Layout";
 import Metas from "../components/Metas";
 
 const Wrapper = styled(Container)`
-  display: flex:
+  display: flex;
   flex-direction: column;
-  padding-top: 10.8rem;
+  // padding-top: 9.6rem;
   padding-bottom: 4.8rem;
+  position: relative;
+  height: 100vh;
+  overflow-y: auto;
 
   .heading {
     text-align: center;
-    margin-bottom: 4.8rem;
+    position: sticky;
+    top: 0;
+    padding-top: 9.6rem;
+    padding-bottom: 4.8rem;
+    background-color: var(--white);
+    z-index: 3;
   }
 
   form {
@@ -25,6 +33,14 @@ const Wrapper = styled(Container)`
 
     .btn {
       margin-top: 4.8rem;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .heading {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 32px;
     }
   }
 

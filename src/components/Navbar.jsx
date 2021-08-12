@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import Container from './Container';
-import Logo from './Logo';
+import styled from "styled-components";
+import Container from "./Container";
+import Logo from "./Logo";
 
 const Wrapper = styled(Container)`
   width: 100%;
@@ -10,6 +10,7 @@ const Wrapper = styled(Container)`
   align-items: center;
   justify-content: space-between;
   height: 5.6rem;
+  z-index: 5;
 
   @media screen and (min-width: 768px) {
     height: 9.6rem;
@@ -21,5 +22,5 @@ export default function Navbar() {
     <Wrapper as="nav">
       <Logo />
     </Wrapper>
-  )
+  );
 }
