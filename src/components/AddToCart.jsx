@@ -151,7 +151,7 @@ const photos = {
   Zobo: zobo,
 };
 
-const AddToCart = ({ content, setOrders, setUpdateVal }) => {
+const AddToCart = ({ content, setOrders }) => {
   const [quantity, setQuantity] = useState(1);
 
   const handleClose = (e) => {
@@ -206,7 +206,7 @@ const AddToCart = ({ content, setOrders, setUpdateVal }) => {
 
     localStorage.setItem("cart", JSON.stringify(cart));
     document.querySelector("#addToCart").classList.remove("open");
-
+    setQuantity(1);
     if (isInCart) {
       window.location.reload(false);
     }
