@@ -165,7 +165,14 @@ const Review = () => {
       id: order.id,
       quantity: order.quantity,
       day_id: order.pivot.day_id,
-      date: new Date().toLocaleDateString(),
+      date: new Date()
+        .toLocaleDateString("zh-Hans-CN", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        })
+        .split("/")
+        .join("-"),
     }));
     const user_location = JSON.parse(localStorage.getItem("user_location"));
 
