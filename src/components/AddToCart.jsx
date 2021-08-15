@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import close from "../assets/close.svg";
+import closeIcon from "../assets/close.svg";
 import Button from "./Button";
 import Quantity from "./Quantity";
 import { useState } from "react";
@@ -222,7 +222,7 @@ const AddToCart = ({ content, setOrders }) => {
           <div className="header">
             <h4>{content.name}</h4>
             <button className="closeBtn" onClick={handleClose}>
-              <img src={close} alt="close" />
+              <img src={closeIcon} alt="close" />
             </button>
           </div>
           <div className="imgWrapper">

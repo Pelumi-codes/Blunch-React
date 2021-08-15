@@ -8,9 +8,9 @@ const Wrapper = styled.button`
   justify-content: center;
   border-radius: 1rem;
   height: 4.8rem;
-  width: ${(props) =>
-    props.fullWidth ? "100%" : props.width ?? "20rem"};
-  background-color: ${(props) => (props.disabled ? "var(--border_color)" : "var(--primary)")};
+  width: ${(props) => (props.fullWidth ? "100%" : props.width ?? "20rem")};
+  background-color: ${(props) =>
+    props.disabled ? "var(--border_color)" : "var(--primary)"};
   color: var(--white);
   font-size: 16px;
   font-style: normal;
@@ -21,18 +21,38 @@ const Wrapper = styled.button`
   transition: background 250ms ease-in;
 
   &:hover {
-    background-color: ${(props) => (props.disabled ? "var(--border_color)" : "var(--primary_dark)")};
+    background-color: ${(props) =>
+      props.disabled ? "var(--border_color)" : "var(--primary_dark)"};
   }
 
   &.bordered {
     background-color: transparent;
-    border: 2px solid ${(props) => (props.disabled ? "var(--border_color)" : "var(--primary)")};
-      color: ${(props) => (props.disabled ? "var(--border_color)" : "var(--primary)")};
+    border: 2px solid
+      ${(props) => (props.disabled ? "var(--border_color)" : "var(--primary)")};
+    color: ${(props) =>
+      props.disabled ? "var(--border_color)" : "var(--primary)"};
 
     &:hover {
       background-color: transparent;
-      border: 2px solid ${(props) => (props.disabled ? "var(--border_color)" : "var(--primary_dark)")};
-      color: ${(props) => (props.disabled ? "var(--border_color)" : "var(--primary_dark)")};
+      border: 2px solid
+        ${(props) =>
+          props.disabled ? "var(--border_color)" : "var(--primary_dark)"};
+      color: ${(props) =>
+        props.disabled ? "var(--border_color)" : "var(--primary_dark)"};
+    }
+  }
+
+  &.link {
+    background-color: transparent;
+    border: none;
+    color: ${(props) =>
+      props.disabled ? "var(--border_color)" : "var(--primary)"};
+
+    &:hover {
+      background-color: transparent;
+      border: none;
+      color: ${(props) =>
+        props.disabled ? "var(--border_color)" : "var(--primary_dark)"};
     }
   }
 `;
@@ -47,8 +67,10 @@ const Button = ({
   color,
   as,
   href,
+  target,
+  rel,
   onClick,
-  loading
+  loading,
 }) => {
   const styleProps = {
     className,
@@ -60,6 +82,8 @@ const Button = ({
     color,
     as,
     href,
+    target,
+    rel,
     onClick,
   };
   return <Wrapper {...styleProps}>{loading ? "..." : text}</Wrapper>;
@@ -69,10 +93,13 @@ Button.propTypes = {
   text: PropTypes.string.isRequired,
   color: PropTypes.string,
   className: PropTypes.string,
+  href: PropTypes.string,
+  target: PropTypes.string,
+  rel: PropTypes.string,
   disabled: PropTypes.bool,
   type: PropTypes.string,
   width: PropTypes.string,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
 };
 
 export default Button;

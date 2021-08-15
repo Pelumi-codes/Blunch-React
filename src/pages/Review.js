@@ -7,6 +7,7 @@ import Button from "../components/Button";
 import Container from "../components/Container";
 import Layout from "../components/Layout";
 import Metas from "../components/Metas";
+import closeIcon from "../assets/close.svg";
 
 const Wrapper = styled(Container)`
   display: flex:
@@ -130,6 +131,114 @@ const Wrapper = styled(Container)`
   }
 `;
 
+const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: #00000020;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.1s ease-out;
+  z-index: 5;
+
+  .content {
+    bottom: -100%;
+    transition: all 0.1s ease-out;
+  }
+
+  &.open {
+    opacity: 1;
+    pointer-events: all;
+
+    .content {
+      bottom: 0;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    padding: 2.4rem;
+
+    &.open .content,
+    .content {
+      bottom: unset;
+    }
+  }
+`;
+
+const ModalContent = styled.div`
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 24px 24px 0px 0px;
+  padding: 2.4rem;
+  padding-bottom: 4.8rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  .header {
+    width: 100%;
+    position: relative;
+    margin-bottom: 3.2rem;
+
+    h4 {
+      color: #14142b;
+      width: 70%;
+    }
+  }
+
+  .closeBtn {
+    width: 2.4rem;
+    height: 2.4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .imgWrapper {
+    width: 100%;
+    height: 26.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    margin-bottom: 3.2rem;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .actionBtns {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1.6rem;
+    margin-top: 3.2rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    height: auto;
+    padding: 4.8rem;
+    border-radius: 2.4rem;
+    position: relative;
+    width: 40%;
+    margin: auto;
+    bottom: unset;
+    left: unset;
+  }
+`;
+
 const formatNumber = (num) => {
   const formatter = new Intl.NumberFormat();
   const toNum = Number(num);
@@ -157,6 +266,11 @@ const Review = () => {
       () => document.querySelector(".alertBox").classList.remove("show"),
       3000
     );
+  };
+
+  const handleCloseModal = (e) => {
+    e.stopPropagation();
+    document.querySelector("#selectPaymentMethod").classList.remove("open");
   };
 
   const makeOrder = async (e) => {
@@ -325,11 +439,92 @@ const Review = () => {
             <Button
               text="Make payment"
               fullWidth
-              onClick={makeOrder}
-              loading={loading}
+              onClick={() =>
+                document
+                  .querySelector("#selectPaymentMethod")
+                  .classList.add("open")
+              }
             />
           </div>
         </Wrapper>
+
+        {/* Select payment method */}
+        {orders && (
+          <Modal
+            id="selectPaymentMethod"
+            onClick={(e) =>
+              e.target.id === "selectPaymentMethod" && handleCloseModal(e)
+            }
+          >
+            <ModalContent className="content">
+              <div className="header">
+                <h4>Select order method</h4>
+                <button className="closeBtn" onClick={handleCloseModal}>
+                  <img src={closeIcon} alt="close" />
+                </button>
+              </div>
+              <div className="actionBtns">
+                <Button
+                  text="Continue to paystack"
+                  fullWidth
+                  onClick={makeOrder}
+                  loading={loading}
+                />
+                <Button
+                  as="a"
+                  href={`https://api.whatsapp.com/send?phone=2348103891539&text=${encodeURIComponent(
+                    `${orders
+                      .map(
+                        (order) =>
+                          `\nDay: ${order.day}\nMeal: ${order.name}\nQuantity: ${order.quantity}\nPrice: ${order.total}\n\n`
+                      )
+                      .join("")}\nSub-total (${orders.length} order${
+                      orders.length > 1 ? "s" : ""
+                    }): ${formatNumber(
+                      orders.reduce((a, b) => a + b.total, 0)
+                    )}\nDelivery fee: ${
+                      userLocation.delivery_price *
+                      Object.keys(
+                        orders
+                          .map((order) => order.pivot.day_id)
+                          .reduce(function (acc, curr) {
+                            return (
+                              acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc
+                            );
+                          }, {})
+                      ).length
+                    }\nTotal: ${formatNumber(
+                      orders.reduce(
+                        (a, b) => a + b.total,
+                        userLocation.delivery_price *
+                          Object.keys(
+                            orders
+                              .map((order) => order.pivot.day_id)
+                              .reduce(function (acc, curr) {
+                                return (
+                                  acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc
+                                );
+                              }, {})
+                          ).length
+                      )
+                    )}\n\n*Customer Information*\n${deliveryInfo?.name}\n${
+                      deliveryInfo?.email
+                    }\n${
+                      deliveryInfo?.phone
+                    }\n\n*Delivery Information*\n${location}\n${
+                      deliveryInfo?.delivery_address
+                    }\n${deliveryInfo?.instructions}\n`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  text="Order via whatsapp"
+                  className="bordered"
+                  fullWidth
+                />
+              </div>
+            </ModalContent>
+          </Modal>
+        )}
       </Layout>
     </>
   );
