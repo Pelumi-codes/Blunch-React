@@ -476,7 +476,7 @@ const Review = () => {
                     `${orders
                       .map(
                         (order) =>
-                          `\nDay: ${order.day}\nMeal: ${order.name}\nQuantity: ${order.quantity}\nPrice: ${order.total}\n\n`
+                          `\nDay: ${order.day}\nMeal: ${order.name}\nQuantity: ${order.quantity}\nPrice: ${order.total}\n`
                       )
                       .join("")}\nSub-total (${orders.length} order${
                       orders.length > 1 ? "s" : ""
