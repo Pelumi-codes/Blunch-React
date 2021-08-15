@@ -180,7 +180,7 @@ const ModalContent = styled.div`
   background-color: var(--white);
   border-radius: 24px 24px 0px 0px;
   padding: 2.4rem;
-  padding-bottom: 4.8rem;
+  padding-bottom: 9.6rem;
   position: absolute;
   bottom: 0;
   left: 0;
