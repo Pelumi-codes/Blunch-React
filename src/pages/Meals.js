@@ -160,7 +160,7 @@ export default function Meals() {
 
   const scrollIntoView = () => {
     let today = new Date().getDay();
-    document.querySelector(`#${days[today]}`).scrollIntoView();
+    days[today] && document.querySelector(`#${days[today]}`).scrollIntoView();
   };
 
   async function getStaticProps() {
