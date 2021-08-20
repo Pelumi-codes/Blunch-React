@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.841ae58a.chunk.css",
-    "main.js": "/static/js/main.509a8629.chunk.js",
-    "main.js.map": "/static/js/main.509a8629.chunk.js.map",
+    "main.js": "/static/js/main.3c53c458.chunk.js",
+    "main.js.map": "/static/js/main.3c53c458.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.7d7b295c.js",
     "runtime-main.js.map": "/static/js/runtime-main.7d7b295c.js.map",
-    "static/js/2.508f9ec7.chunk.js": "/static/js/2.508f9ec7.chunk.js",
-    "static/js/2.508f9ec7.chunk.js.map": "/static/js/2.508f9ec7.chunk.js.map",
+    "static/js/2.749879fa.chunk.js": "/static/js/2.749879fa.chunk.js",
+    "static/js/2.749879fa.chunk.js.map": "/static/js/2.749879fa.chunk.js.map",
     "index.html": "/index.html",
     "static/css/main.841ae58a.chunk.css.map": "/static/css/main.841ae58a.chunk.css.map",
-    "static/js/2.508f9ec7.chunk.js.LICENSE.txt": "/static/js/2.508f9ec7.chunk.js.LICENSE.txt",
+    "static/js/2.749879fa.chunk.js.LICENSE.txt": "/static/js/2.749879fa.chunk.js.LICENSE.txt",
     "static/media/4 Chicken Waffles & 2 Sausages & Syrup.c4cef60b.jpeg": "/static/media/4 Chicken Waffles & 2 Sausages & Syrup.c4cef60b.jpeg",
     "static/media/4 Plain Waffles & 2 Sausages & Syrup.5153cff6.jpg": "/static/media/4 Plain Waffles & 2 Sausages & Syrup.5153cff6.jpg",
     "static/media/6 Pancakes & 2 Sausages & Syrup.e7947ac9.jpeg": "/static/media/6 Pancakes & 2 Sausages & Syrup.e7947ac9.jpeg",
@@ -24,20 +24,18 @@
     "static/media/chevron_down.4d13c6e6.svg": "/static/media/chevron_down.4d13c6e6.svg",
     "static/media/close.dd287d17.svg": "/static/media/close.dd287d17.svg",
     "static/media/indexMeal.20ef50bf.svg": "/static/media/indexMeal.20ef50bf.svg",
-    "static/media/instagram.482d4132.svg": "/static/media/instagram.482d4132.svg",
     "static/media/logo.8aba7ce3.svg": "/static/media/logo.8aba7ce3.svg",
     "static/media/map_pin.a37bd538.svg": "/static/media/map_pin.a37bd538.svg",
     "static/media/minusLight.73a16825.svg": "/static/media/minusLight.73a16825.svg",
     "static/media/minusPrimary.2631ace0.svg": "/static/media/minusPrimary.2631ace0.svg",
     "static/media/order_success.67890dd8.svg": "/static/media/order_success.67890dd8.svg",
     "static/media/plusLight.02e76057.svg": "/static/media/plusLight.02e76057.svg",
-    "static/media/plusPrimary.2b277571.svg": "/static/media/plusPrimary.2b277571.svg",
-    "static/media/whatsapp.be8b84bc.svg": "/static/media/whatsapp.be8b84bc.svg"
+    "static/media/plusPrimary.2b277571.svg": "/static/media/plusPrimary.2b277571.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.7d7b295c.js",
-    "static/js/2.508f9ec7.chunk.js",
+    "static/js/2.749879fa.chunk.js",
     "static/css/main.841ae58a.chunk.css",
-    "static/js/main.509a8629.chunk.js"
+    "static/js/main.3c53c458.chunk.js"
   ]
 }

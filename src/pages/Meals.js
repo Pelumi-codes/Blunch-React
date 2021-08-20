@@ -168,7 +168,7 @@ export default function Meals() {
   async function getStaticProps() {
     setLoading(true);
     const res = await axios.get("https://order-api.blunch.ng/api/menu");
-    setLoading(false);
+
     const menu = res.data;
 
     if (menu) delete menu.status;
@@ -177,6 +177,7 @@ export default function Meals() {
 
     setMenu(menu);
     setTimeout(() => scrollIntoView());
+    setLoading(false);
   }
 
   const handleMealSelect = () => {
