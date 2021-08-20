@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Container from "./Container";
 import Logo from "./Logo";
-import instagram from "../assets/instagram.svg";
-import whatsapp from "../assets/whatsapp.svg";
+// import instagram from "../assets/instagram.svg";
+// import whatsapp from "../assets/whatsapp.svg";
 
 const Wrapper = styled(Container)`
   width: 100%;
@@ -34,7 +34,7 @@ export default function Navbar() {
   return (
     <Wrapper as="nav">
       <Logo />
-      <div className="socials">
+      {/* <div className="socials">
         <a
           href="https://wa.link/o3b1bj"
           target="_blank"
@@ -49,7 +49,7 @@ export default function Navbar() {
         >
           <img src={instagram} alt="instagram" className="icon" />
         </a>
-      </div>
+      </div> */}
     </Wrapper>
   );
 }
