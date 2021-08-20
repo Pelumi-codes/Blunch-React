@@ -11,6 +11,7 @@ import { useHistory } from "react-router";
 import Metas from "../components/Metas";
 import map_pin from "../assets/map_pin.svg";
 import Cart from "../components/Cart";
+import Loader from "../components/Loader";
 
 const Wrapper = styled(Container)`
   -ms-overflow-style: none;
@@ -155,6 +156,7 @@ export default function Meals() {
     JSON.parse(localStorage.getItem("menu")) || false
   );
   const [updateVal, setUpdateVal] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const router = useHistory();
 
@@ -164,7 +166,9 @@ export default function Meals() {
   };
 
   async function getStaticProps() {
+    setLoading(true);
     const res = await axios.get("https://order-api.blunch.ng/api/menu");
+    setLoading(false);
     const menu = res.data;
 
     if (menu) delete menu.status;
@@ -211,6 +215,7 @@ export default function Meals() {
     <>
       <Metas pageTitle="Meals" metaContent="Breakfast meals for lunch" />
       <Layout>
+        {loading && <Loader />}
         {!!orders.length && (
           <CartPreview>
             <p>
