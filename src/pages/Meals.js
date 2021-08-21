@@ -146,6 +146,7 @@ const days = {
   3: "wednesday",
   4: "thursday",
   5: "friday",
+  6: "saturday",
 };
 
 export default function Meals() {
@@ -346,6 +347,20 @@ export default function Meals() {
                     key={`${index}${meal.id}`}
                     {...meal}
                     day="friday"
+                    handleMealSelect={handleMealSelect}
+                    orders={orders}
+                  />
+                ))}
+              </Section>
+              <Section id="saturday">
+                <div className="title">
+                  {menu["saturday"] && <h3 className="fontMedium">Saturday</h3>}
+                </div>
+                {menu["saturday"]?.map((meal, index) => (
+                  <MealCard
+                    key={`${index}${meal.id}`}
+                    {...meal}
+                    day="saturday"
                     handleMealSelect={handleMealSelect}
                     orders={orders}
                   />
