@@ -611,10 +611,15 @@ const Review = () => {
                             );
                           }, {})
                       ).length
+                    }${
+                      couponCode
+                        ? `\nDiscount: ${couponDetails.discount}% off on ${couponDetails.type}.`
+                        : ""
                     }\nTotal: ${formatNumber(
                       orders.reduce(
                         (a, b) => a + b.total,
                         userLocation.delivery_price *
+                          (couponCode ? couponDetails?.discount / 100 : 1) *
                           Object.keys(
                             orders
                               .map((order) => order.pivot.day_id)
@@ -625,11 +630,7 @@ const Review = () => {
                               }, {})
                           ).length
                       )
-                    )}${
-                      couponCode
-                        ? `\nDiscount: ${couponDetails.discount}% off on ${couponDetails.type}.`
-                        : ""
-                    }\n\n*Customer Information*\n${deliveryInfo?.name}\n${
+                    )}\n\n*Customer Information*\n${deliveryInfo?.name}\n${
                       deliveryInfo?.email
                     }\n${
                       deliveryInfo?.phone
