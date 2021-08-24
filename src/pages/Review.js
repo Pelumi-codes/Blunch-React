@@ -8,6 +8,7 @@ import Container from "../components/Container";
 import Layout from "../components/Layout";
 import Metas from "../components/Metas";
 import closeIcon from "../assets/close.svg";
+import FormGroup from "../components/FormGroup";
 
 const Wrapper = styled(Container)`
   display: flex:
@@ -36,7 +37,7 @@ const Wrapper = styled(Container)`
     }
   }
 
-  .info {
+  .info, .cart {
     height: max-content;
   }
 
@@ -91,6 +92,22 @@ const Wrapper = styled(Container)`
     margin-top: 4.8rem;
   }
 
+  .coupon {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 4.8rem;
+
+    .applyCoupon {
+      margin-top: 1.2rem;
+      width: 100%;
+    }
+  }
+
+  .couponMsg {
+    margin-block: 1.2rem;
+  }
+
   .lg {
     display: none;
   }
@@ -119,6 +136,21 @@ const Wrapper = styled(Container)`
       grid-template-columns: 1fr 1fr;
       grid-gap: 4.8rem;
       margin-top: 4.8rem;
+    }
+
+    .coupon {
+      flex-direction: row;
+
+      .couponInput {
+        width: -webkit-fill-available;
+      }
+
+      .applyCoupon {
+        flex-shrink: 0;
+        margin-top: 0;
+        margin-left: 1.6rem;
+        width: 20rem;
+      }
     }
 
     .mb {
@@ -255,6 +287,10 @@ const Review = () => {
   const [location, setLocation] = useState(false);
   const [userLocation, setUserLocation] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [checkingCoupon, setCheckingCoupon] = useState(false);
+  const [couponMsg, setCouponMsg] = useState("");
+  const [couponCode, setCouponCode] = useState(false);
+  const [couponDetails, setCouponDetails] = useState({});
 
   const showAlert = (msg = "...", _success = false) => {
     // e.preventDefault();
@@ -301,7 +337,9 @@ const Review = () => {
           deliveryInfo.phone
         }&location_id=${Number(location_id)}&email=${
           deliveryInfo.email
-        }&address=${deliveryInfo.delivery_address}`,
+        }&address=${deliveryInfo.delivery_address}${
+          couponCode ? `&coupon=${couponCode}` : ""
+        }`,
         { meals }
       );
     } catch (e) {
@@ -313,6 +351,40 @@ const Review = () => {
       window.location.replace(`${url}/paynow?order_id=${res.data?.order_id}`);
     } else {
       showAlert("An error occurred", false);
+    }
+  };
+
+  const checkCouponValidity = async (e) => {
+    e.preventDefault();
+    try {
+      const user_location = JSON.parse(localStorage.getItem("user_location"));
+      const code = document.querySelector(`input[name="coupon_code"]`).value;
+      const url = `https://order-api.blunch.ng/api/coupon/check/${code}?location_id=${user_location?.id}`;
+
+      setCheckingCoupon(true);
+
+      const res = await axios.post(url);
+
+      setCheckingCoupon(false);
+
+      if (res?.data?.valid) {
+        setCouponMsg(
+          `Sweet! You now have ${res.data?.coupon?.discount}% discount on ${res.data?.coupon?.type}.`
+        );
+        setCouponCode(code);
+        setCouponDetails(res.data?.coupon);
+        document.querySelector(`.couponMsg`).style.color = "#1ac79c";
+      } else {
+        setCouponMsg("Oops.. the coupon code is invalid");
+        document.querySelector(`.couponMsg`).style.color = "#cc2364";
+      }
+
+      document.querySelector(`input[name="coupon_code"]`).focus();
+      document.querySelector(`input[name="coupon_code"]`).value = "";
+      document.querySelector(`input[name="coupon_code"]`).blur();
+    } catch (e) {
+      setCheckingCoupon(false);
+      console.log(e);
     }
   };
 
@@ -378,6 +450,36 @@ const Review = () => {
                         ).length}
                     </span>
                   </div>
+                  {couponCode && (
+                    <div className="sup item">
+                      <span></span>
+                      <span>
+                        - NGN{" "}
+                        {userLocation.delivery_price *
+                          Object.keys(
+                            orders
+                              .map((order) => order.pivot.day_id)
+                              .reduce(function (acc, curr) {
+                                return (
+                                  acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc
+                                );
+                              }, {})
+                          ).length -
+                          userLocation.delivery_price *
+                            (couponCode ? couponDetails?.discount / 100 : 1) *
+                            Object.keys(
+                              orders
+                                .map((order) => order.pivot.day_id)
+                                .reduce(function (acc, curr) {
+                                  return (
+                                    acc[curr] ? ++acc[curr] : (acc[curr] = 1),
+                                    acc
+                                  );
+                                }, {})
+                            ).length}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 {!!orders.length && (
                   <h5 className="total">
@@ -388,6 +490,7 @@ const Review = () => {
                         orders.reduce(
                           (a, b) => a + b.total,
                           userLocation.delivery_price *
+                            (couponCode ? couponDetails?.discount / 100 : 1) *
                             Object.keys(
                               orders
                                 .map((order) => order.pivot.day_id)
@@ -403,6 +506,20 @@ const Review = () => {
                     </span>
                   </h5>
                 )}
+                <form className="coupon" onSubmit={checkCouponValidity}>
+                  <FormGroup
+                    fieldStyle="shortText"
+                    name="coupon_code"
+                    placeholder="Coupon code"
+                    className="couponInput"
+                  />
+                  <Button
+                    text={checkingCoupon ? "Checking..." : "Apply coupon"}
+                    className="applyCoupon"
+                    disabled={checkingCoupon}
+                  />
+                </form>
+                {!!couponMsg.length && <p className="couponMsg">{couponMsg}</p>}
                 <div className="disclaimer">
                   <p>
                     Note:
@@ -469,6 +586,7 @@ const Review = () => {
                   fullWidth
                   onClick={makeOrder}
                   loading={loading}
+                  disabled={loading}
                 />
                 <Button
                   as="a"
@@ -507,7 +625,11 @@ const Review = () => {
                               }, {})
                           ).length
                       )
-                    )}\n\n*Customer Information*\n${deliveryInfo?.name}\n${
+                    )}${
+                      couponCode
+                        ? `\nDiscount: ${couponDetails.discount}% off on ${couponDetails.type}.`
+                        : ""
+                    }\n\n*Customer Information*\n${deliveryInfo?.name}\n${
                       deliveryInfo?.email
                     }\n${
                       deliveryInfo?.phone
