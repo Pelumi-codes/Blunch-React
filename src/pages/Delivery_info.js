@@ -138,7 +138,7 @@ const Delivery_info = () => {
             <FormGroup
               fieldStyle="longText"
               inputType="text"
-              name="instructions"
+              name="instruction"
               placeholder="Instructions (Optional)"
               required={false}
               defaultValue={deliveryInfo.instructions}
