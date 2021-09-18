@@ -284,41 +284,29 @@ export default function Meals() {
                 <div className="title">
                   {menu["monday"] && <h3 className="fontMedium">Monday</h3>}
                 </div>
-                {menu["monday"]
-                  ?.filter(
-                    (item) =>
-                      new Date("2021-09-09").getTime() >
-                      new Date(item.created_at).getTime()
-                  )
-                  .map((meal, index) => (
-                    <MealCard
-                      key={`${index}${meal.id}`}
-                      {...meal}
-                      day="monday"
-                      handleMealSelect={handleMealSelect}
-                      orders={orders}
-                    />
-                  ))}
+                {menu["monday"]?.map((meal, index) => (
+                  <MealCard
+                    key={`${index}${meal.id}`}
+                    {...meal}
+                    day="monday"
+                    handleMealSelect={handleMealSelect}
+                    orders={orders}
+                  />
+                ))}
               </Section>
               <Section id="tuesday">
                 <div className="title">
                   {menu["tuesday"] && <h3 className="fontMedium">Tuesday</h3>}
                 </div>
-                {menu["tuesday"]
-                  ?.filter(
-                    (item) =>
-                      new Date("2021-09-09").getTime() >
-                      new Date(item.created_at).getTime()
-                  )
-                  .map((meal, index) => (
-                    <MealCard
-                      key={`${index}${meal.id}`}
-                      {...meal}
-                      day="tuesday"
-                      handleMealSelect={handleMealSelect}
-                      orders={orders}
-                    />
-                  ))}
+                {menu["tuesday"]?.map((meal, index) => (
+                  <MealCard
+                    key={`${index}${meal.id}`}
+                    {...meal}
+                    day="tuesday"
+                    handleMealSelect={handleMealSelect}
+                    orders={orders}
+                  />
+                ))}
               </Section>
               <Section id="wednesday">
                 <div className="title">
@@ -326,81 +314,57 @@ export default function Meals() {
                     <h3 className="fontMedium">Wednesday</h3>
                   )}
                 </div>
-                {menu["wednesday"]
-                  ?.filter(
-                    (item) =>
-                      new Date("2021-09-09").getTime() >
-                      new Date(item.created_at).getTime()
-                  )
-                  .map((meal, index) => (
-                    <MealCard
-                      key={`${index}${meal.id}`}
-                      {...meal}
-                      day="wednesday"
-                      handleMealSelect={handleMealSelect}
-                      orders={orders}
-                    />
-                  ))}
+                {menu["wednesday"]?.map((meal, index) => (
+                  <MealCard
+                    key={`${index}${meal.id}`}
+                    {...meal}
+                    day="wednesday"
+                    handleMealSelect={handleMealSelect}
+                    orders={orders}
+                  />
+                ))}
               </Section>
               <Section id="thursday">
                 <div className="title">
                   {menu["thursday"] && <h3 className="fontMedium">Thursday</h3>}
                 </div>
-                {menu["thursday"]
-                  ?.filter(
-                    (item) =>
-                      new Date("2021-09-09").getTime() >
-                      new Date(item.created_at).getTime()
-                  )
-                  .map((meal, index) => (
-                    <MealCard
-                      key={`${index}${meal.id}`}
-                      {...meal}
-                      day="thursday"
-                      handleMealSelect={handleMealSelect}
-                      orders={orders}
-                    />
-                  ))}
+                {menu["thursday"]?.map((meal, index) => (
+                  <MealCard
+                    key={`${index}${meal.id}`}
+                    {...meal}
+                    day="thursday"
+                    handleMealSelect={handleMealSelect}
+                    orders={orders}
+                  />
+                ))}
               </Section>
               <Section id="friday">
                 <div className="title">
                   {menu["friday"] && <h3 className="fontMedium">Friday</h3>}
                 </div>
-                {menu["friday"]
-                  ?.filter(
-                    (item) =>
-                      new Date("2021-09-09").getTime() >
-                      new Date(item.created_at).getTime()
-                  )
-                  .map((meal, index) => (
-                    <MealCard
-                      key={`${index}${meal.id}`}
-                      {...meal}
-                      day="friday"
-                      handleMealSelect={handleMealSelect}
-                      orders={orders}
-                    />
-                  ))}
+                {menu["friday"]?.map((meal, index) => (
+                  <MealCard
+                    key={`${index}${meal.id}`}
+                    {...meal}
+                    day="friday"
+                    handleMealSelect={handleMealSelect}
+                    orders={orders}
+                  />
+                ))}
               </Section>
               <Section id="saturday">
                 <div className="title">
                   {menu["saturday"] && <h3 className="fontMedium">Saturday</h3>}
                 </div>
-                {menu["saturday"]
-                  ?.filter(
-                    (item) =>
-                      new Date("2021-09-09").getTime() >
-                      new Date(item.created_at).getTime()
-                  )
-                  .map((meal, index) => (
-                    <MealCard
-                      key={`${index}${meal.id}`}
-                      {...meal}
-                      day="saturday"
-                      handleMealSelect={handleMealSelect}
-                      orders={orders}
-                    />
-                  ))}
+                {menu["saturday"]?.map((meal, index) => (
+                  <MealCard
+                    key={`${index}${meal.id}`}
+                    {...meal}
+                    day="saturday"
+                    handleMealSelect={handleMealSelect}
+                    orders={orders}
+                  />
+                ))}
               </Section>
             </div>
             <Cart

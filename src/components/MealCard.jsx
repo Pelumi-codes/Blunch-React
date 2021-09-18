@@ -2,16 +2,16 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Button from "./Button";
 import { useEffect, useState } from "react";
-import chicken_waffles from "../assets/menu/4 Chicken Waffles & 2 Sausages & Syrup.jpeg";
-import plain_waffles from "../assets/menu/4 Plain Waffles & 2 Sausages & Syrup.jpg";
-import pancakes_sausages_syrup from "../assets/menu/6 Pancakes & 2 Sausages & Syrup.jpeg";
-import chicken_sandwich from "../assets/menu/Chicken Sandwich.jpeg";
-import chicken_stirfry from "../assets/menu/Chicken Stir Fry Noodles.jpeg";
-import egg_mayo_sandwich from "../assets/menu/Egg & Mayo Sandwich.jpeg";
-import sardine_sandwich from "../assets/menu/Sardine Sandwich.jpeg";
-import suya_stirfry_extra_suya from "../assets/menu/Suya Stir Fry Noodles & Extra Suya.jpeg";
-import suya_stirfry from "../assets/menu/Suya Stir Fry Noodles.jpeg";
-import zobo from "../assets/menu/Zobo.jpeg";
+// import chicken_waffles from "../assets/menu/4 Chicken Waffles & 2 Sausages & Syrup.jpeg";
+// import plain_waffles from "../assets/menu/4 Plain Waffles & 2 Sausages & Syrup.jpg";
+// import pancakes_sausages_syrup from "../assets/menu/6 Pancakes & 2 Sausages & Syrup.jpeg";
+// import chicken_sandwich from "../assets/menu/Chicken Sandwich.jpeg";
+// import chicken_stirfry from "../assets/menu/Chicken Stir Fry Noodles.jpeg";
+// import egg_mayo_sandwich from "../assets/menu/Egg & Mayo Sandwich.jpeg";
+// import sardine_sandwich from "../assets/menu/Sardine Sandwich.jpeg";
+// import suya_stirfry_extra_suya from "../assets/menu/Suya Stir Fry Noodles & Extra Suya.jpeg";
+// import suya_stirfry from "../assets/menu/Suya Stir Fry Noodles.jpeg";
+// import zobo from "../assets/menu/Zobo.jpeg";
 
 const Wrapper = styled.div`
   display: grid;
@@ -80,18 +80,20 @@ const formatNumber = (num) => {
   return formatter.format(toNum);
 };
 
-const photos = {
-  "4 Chicken Waffles + 2 Sausages + Syrup": chicken_waffles,
-  "4 Plain Waffles + 2 Sausages + Syrup": plain_waffles,
-  "6 Pancakes + 2 Sausages + Syrup": pancakes_sausages_syrup,
-  "Chicken Sandwich": chicken_sandwich,
-  "Chicken Stir Fry Noodles": chicken_stirfry,
-  "Egg & Mayo Sandwich": egg_mayo_sandwich,
-  "Sardine Sandwich": sardine_sandwich,
-  "Suya Stir Fry Noodles +Extra Suya": suya_stirfry_extra_suya,
-  "Suya Stir Fry Noodles": suya_stirfry,
-  Zobo: zobo,
-};
+// const photos = {
+//   "4 Chicken Waffles + 2 Sausages + Syrup": chicken_waffles,
+//   "4 Plain Waffles + 2 Sausages + Syrup": plain_waffles,
+//   "6 Pancakes + 2 Sausages + Syrup": pancakes_sausages_syrup,
+//   "Chicken Sandwich": chicken_sandwich,
+//   "Chicken Stir Fry Noodles": chicken_stirfry,
+//   "Egg & Mayo Sandwich": egg_mayo_sandwich,
+//   "Sardine Sandwich": sardine_sandwich,
+//   "Suya Stir Fry Noodles +Extra Suya": suya_stirfry_extra_suya,
+//   "Suya Stir Fry Noodles": suya_stirfry,
+//   Zobo: zobo,
+// };
+
+const API_HOST_PHOTO = "https://order-api.blunch.ng/api/photo";
 
 const MealCard = (props) => {
   const { name, price, day, handleMealSelect } = props;
@@ -132,7 +134,7 @@ const MealCard = (props) => {
   return (
     <Wrapper>
       <div className="imgWrapper">
-        <img src={photos[name]} alt={name} />
+        <img src={`${API_HOST_PHOTO}/${props.photo}`} alt={name} />
       </div>
       <div className="content">
         <h4 className="mealName fontBold">{name}</h4>
