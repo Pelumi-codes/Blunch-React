@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.841ae58a.chunk.css",
-    "main.js": "/static/js/main.3067246a.chunk.js",
-    "main.js.map": "/static/js/main.3067246a.chunk.js.map",
+    "main.js": "/static/js/main.01dcc065.chunk.js",
+    "main.js.map": "/static/js/main.01dcc065.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.7d7b295c.js",
     "runtime-main.js.map": "/static/js/runtime-main.7d7b295c.js.map",
     "static/js/2.e1aa35c7.chunk.js": "/static/js/2.e1aa35c7.chunk.js",
@@ -10,17 +10,7 @@
     "index.html": "/index.html",
     "static/css/main.841ae58a.chunk.css.map": "/static/css/main.841ae58a.chunk.css.map",
     "static/js/2.e1aa35c7.chunk.js.LICENSE.txt": "/static/js/2.e1aa35c7.chunk.js.LICENSE.txt",
-    "static/media/4 Chicken Waffles & 2 Sausages & Syrup.c4cef60b.jpeg": "/static/media/4 Chicken Waffles & 2 Sausages & Syrup.c4cef60b.jpeg",
-    "static/media/4 Plain Waffles & 2 Sausages & Syrup.5153cff6.jpg": "/static/media/4 Plain Waffles & 2 Sausages & Syrup.5153cff6.jpg",
-    "static/media/6 Pancakes & 2 Sausages & Syrup.e7947ac9.jpeg": "/static/media/6 Pancakes & 2 Sausages & Syrup.e7947ac9.jpeg",
-    "static/media/Chicken Sandwich.5bf43f5d.jpeg": "/static/media/Chicken Sandwich.5bf43f5d.jpeg",
-    "static/media/Chicken Stir Fry Noodles.c4ae891d.jpeg": "/static/media/Chicken Stir Fry Noodles.c4ae891d.jpeg",
-    "static/media/Egg & Mayo Sandwich.77245586.jpeg": "/static/media/Egg & Mayo Sandwich.77245586.jpeg",
     "static/media/index.css": "/static/media/Gordita Regular.74727069.woff",
-    "static/media/Sardine Sandwich.04334286.jpeg": "/static/media/Sardine Sandwich.04334286.jpeg",
-    "static/media/Suya Stir Fry Noodles & Extra Suya.69ed1080.jpeg": "/static/media/Suya Stir Fry Noodles & Extra Suya.69ed1080.jpeg",
-    "static/media/Suya Stir Fry Noodles.69ed1080.jpeg": "/static/media/Suya Stir Fry Noodles.69ed1080.jpeg",
-    "static/media/Zobo.814820cc.jpeg": "/static/media/Zobo.814820cc.jpeg",
     "static/media/chevron_down.4d13c6e6.svg": "/static/media/chevron_down.4d13c6e6.svg",
     "static/media/close.dd287d17.svg": "/static/media/close.dd287d17.svg",
     "static/media/indexMeal.20ef50bf.svg": "/static/media/indexMeal.20ef50bf.svg",
@@ -36,6 +26,6 @@
     "static/js/runtime-main.7d7b295c.js",
     "static/js/2.e1aa35c7.chunk.js",
     "static/css/main.841ae58a.chunk.css",
-    "static/js/main.3067246a.chunk.js"
+    "static/js/main.01dcc065.chunk.js"
   ]
 }

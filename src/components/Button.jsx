@@ -14,7 +14,7 @@ const Wrapper = styled.button`
   color: var(--white);
   font-size: 16px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 24px;
   letter-spacing: 0.75px;
   text-align: center;
