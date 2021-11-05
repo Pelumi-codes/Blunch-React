@@ -1,4 +1,4 @@
-<a href="https://nostalgic-roentgen-e196b4.netlify.app">Link to Code</a>
+<a href="https://nostalgic-roentgen-e196b4.netlify.app">Code Link</a>
 
 # Getting Started with Create React App
 
